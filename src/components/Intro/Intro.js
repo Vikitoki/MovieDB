@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 
 import { searchMovie } from "../../redux/search/action-creators";
@@ -8,13 +8,16 @@ import "./Intro.scss";
 
 const Intro = ({ loading, setStateText, fetchMovies, error, moviesList }) => {
   const [inputValue, setInputValue] = useState("");
-  console.log(moviesList);
 
   const submitHundler = (event) => {
     event.preventDefault();
     setStateText(inputValue);
     fetchMovies(inputValue);
     setInputValue("");
+  };
+
+  const handlerSearch = (event) => {
+    setInputValue(event.target.value);
   };
 
   return (
@@ -34,7 +37,7 @@ const Intro = ({ loading, setStateText, fetchMovies, error, moviesList }) => {
                     type="text"
                     name="searchFilm"
                     className="search-intro__input"
-                    onChange={(event) => setInputValue(event.target.value)}
+                    onChange={handlerSearch}
                     value={inputValue}
                   />
                 </div>
@@ -47,6 +50,10 @@ const Intro = ({ loading, setStateText, fetchMovies, error, moviesList }) => {
         </div>
         <div className="intro__bottom">
           {loading && <span>Loading</span>}
+          {moviesList.Response === "False" ? (
+            <span>Sorry but we cant find thi film , pls try again</span>
+          ) : null}
+          {error ? <span>Error</span> : null}
           {moviesList.Search ? (
             <ul className="search-intro__list">
               {moviesList.Search.map((item) => {
@@ -58,7 +65,6 @@ const Intro = ({ loading, setStateText, fetchMovies, error, moviesList }) => {
               })}
             </ul>
           ) : null}
-          {error ? <span>Error</span> : null}
         </div>
       </div>
     </section>
@@ -70,6 +76,7 @@ const mapStateToProps = (state) => {
     loading: state.movies.loading,
     error: state.movies.error,
     moviesList: state.movies.moviesList,
+    text: state.movies.text,
   };
 };
 

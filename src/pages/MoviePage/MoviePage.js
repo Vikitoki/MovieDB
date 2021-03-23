@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import fetchCurrentMovie from "../../redux/services/fetchCurrentMovies";
 
 import MovieCurrentCart from "../../components/MovieCurrentCart/MovieCurrentCart";
+
+import "./MoviePage.scss";
 
 const MoviePage = ({
   match,
@@ -19,7 +22,7 @@ const MoviePage = ({
   }, [currentMovieId]);
 
   return (
-    <div>
+    <>
       {loading ? (
         <h2>Loading</h2>
       ) : error ? (
@@ -39,16 +42,28 @@ const MoviePage = ({
                   ))
                 : null}
             </ul>
+            <div class="movie-page__btn">
+              <Link to="/" exact class="btn btn_blue">
+                Go back to search
+              </Link>
+            </div>
+            <div className="movie-page__btn movie-page__btn_show">
+              <a
+                href={
+                  currentMovie
+                    ? `https://www.imdb.com/title/${currentMovie.imdbID}`
+                    : "#"
+                }
+                target="_blank"
+                class="btn btn_blue"
+              >
+                Show this film on IMDB
+              </a>
+            </div>
           </div>
         </div>
-
-        // Actors: "Ellen Burstyn, Matthew McConaughey, Mackenzie Foy, John
-        // Lithgow" Awards: "Won 1 Oscar. Another 43 wins & 148 nominations."
-        // BoxOffice: "$188,020,017" Country: "USA, UK, Canada" DVD: "24 May
-        // 2016" Director: "Christopher Nolan" Genre: "Adventure, Drama,
-        // Sci-Fi" Language: "English"
       )}
-    </div>
+    </>
   );
 };
 

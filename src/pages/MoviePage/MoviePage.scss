@@ -1,0 +1,61 @@
+.movie-page {
+  display: block;
+  flex: 1 1 100%;
+  padding: 50px 0;
+  background-color: rgba(0, 0, 0, 0.02);
+
+  &__content {
+    padding: 20px;
+    display: block;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+
+    border-radius: 20px;
+    background-color: royalblue;
+  }
+
+  &__btn {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+
+    text-align: center;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__list {
+    display: block;
+    li {
+      display: block;
+      margin-bottom: 25px;
+
+      font-weight: 400;
+      color: #fff;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      span {
+        &:nth-child(1) {
+          font-size: 25px;
+          line-height: 32px;
+
+          display: block;
+          margin-bottom: 15px;
+        }
+
+        &:nth-child(2) {
+          font-size: 18px;
+          line-height: 24px;
+
+          display: block;
+        }
+      }
+    }
+  }
+}
