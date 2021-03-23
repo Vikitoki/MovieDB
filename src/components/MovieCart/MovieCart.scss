@@ -1,0 +1,53 @@
+.movie-cart {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  &__content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 15px;
+
+    border-radius: 15px;
+    background-color: rgb(46, 45, 45);
+  }
+
+  &__img {
+    display: block;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 370px;
+    img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+  }
+
+  &__title {
+    flex: 1 1 auto;
+    display: block;
+    margin-bottom: 15px;
+    font-size: 25px;
+    line-height: 32px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  &__year {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  &__type {
+    display: block;
+    margin-bottom: 25px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #fff;
+  }
+}

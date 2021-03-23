@@ -3,17 +3,16 @@ import { connect } from "react-redux";
 
 import { searchMovie } from "../../redux/search/action-creators";
 import fetchMovies from "../../redux/services/fetchMovies";
+import MovieCart from "../MovieCart/MovieCart";
 import "./Intro.scss";
 
-const Intro = ({ loading, text, setStateText, fetchMovies }) => {
+const Intro = ({ loading, setStateText, fetchMovies, error, moviesList }) => {
   const [inputValue, setInputValue] = useState("");
-
-  useEffect(() => {
-    setStateText(inputValue);
-  }, [inputValue]);
+  console.log(moviesList);
 
   const submitHundler = (event) => {
     event.preventDefault();
+    setStateText(inputValue);
     fetchMovies(inputValue);
     setInputValue("");
   };
@@ -46,7 +45,21 @@ const Intro = ({ loading, text, setStateText, fetchMovies }) => {
             </form>
           </div>
         </div>
-        <div className="intro__bottom"></div>
+        <div className="intro__bottom">
+          {loading && <span>Loading</span>}
+          {moviesList.Search ? (
+            <ul className="search-intro__list">
+              {moviesList.Search.map((item) => {
+                return (
+                  <li key={`${Math.random()}`}>
+                    <MovieCart movieInfro={item} />
+                  </li>
+                );
+              })}
+            </ul>
+          ) : null}
+          {error ? <span>Error</span> : null}
+        </div>
       </div>
     </section>
   );
@@ -55,7 +68,8 @@ const Intro = ({ loading, text, setStateText, fetchMovies }) => {
 const mapStateToProps = (state) => {
   return {
     loading: state.movies.loading,
-    text: state.movies.text,
+    error: state.movies.error,
+    moviesList: state.movies.moviesList,
   };
 };
 

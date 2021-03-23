@@ -10,8 +10,6 @@ const fetchMovies = (text) => {
   return async (dispatch) => {
     dispatch(fetchRequestMovies());
 
-    console.log(text);
-
     const response = await fetch(
       `http://www.omdbapi.com/?apikey=${ApiKey}&s=${text}`
     );
