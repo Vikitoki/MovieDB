@@ -1,12 +1,14 @@
 import React from "react";
 import { Provider } from "react-redux";
-
 import { Route, Switch } from "react-router";
 
 import store from "../../redux/store";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
+
 import Main from "../../pages/Main/Main";
+import MoviePage from "../../pages/MoviePage/MoviePage";
+import ErrorPage from "../../pages/404/ErrorPage";
 
 const App = () => {
   return (
@@ -15,6 +17,8 @@ const App = () => {
         <Header />
         <Switch>
           <Route path="/" component={Main} exact />
+          <Route path="/movie/:id" component={MoviePage} exact />
+          <Route path="*" component={ErrorPage} exact />
         </Switch>
         <Footer />
       </div>
